@@ -1,6 +1,7 @@
 package com.macro.mall.controller;
 
 import com.macro.mall.common.api.CommonResult;
+import com.macro.mall.controller.base.BaseController;
 import com.macro.mall.model.CmsPrefrenceArea;
 import com.macro.mall.service.CmsPrefrenceAreaService;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ import java.util.List;
 @Controller
 @Api(tags = "CmsPrefrenceAreaController", description = "商品优选管理")
 @RequestMapping("/prefrenceArea")
-public class CmsPrefrenceAreaController {
+public class CmsPrefrenceAreaController extends BaseController {
     @Autowired
     private CmsPrefrenceAreaService prefrenceAreaService;
 

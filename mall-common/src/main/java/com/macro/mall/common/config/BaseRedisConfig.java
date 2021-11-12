@@ -25,6 +25,18 @@ import java.time.Duration;
  */
 public class BaseRedisConfig {
 
+    @Bean(name = "pureStringRedis")
+    public RedisTemplate redisTemplate1(RedisConnectionFactory factory) {
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(factory);
+        StringRedisSerializer stringSerializer = new StringRedisSerializer();
+        redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setHashKeySerializer(stringSerializer);
+        Jackson2JsonRedisSerializer jackson2JsonSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
+        redisTemplate.setValueSerializer(jackson2JsonSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonSerializer);
+        return redisTemplate;
+    }
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisSerializer<Object> serializer = redisSerializer();
