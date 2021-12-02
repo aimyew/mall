@@ -14,19 +14,16 @@ public class CountDownTest {
         final CountDownLatch cdOrder = new CountDownLatch(1);
         final CountDownLatch cdAnswer = new CountDownLatch(4);
         for (int i = 0; i < 4; i++) {
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        System.out.println("选手" + Thread.currentThread().getName() + "正在等待裁判发布口令");
-                        cdOrder.await();
-                        System.out.println("选手" + Thread.currentThread().getName() + "已接受裁判口令");
-                        Thread.sleep((long) (Math.random() * 10000));
-                        System.out.println("选手" + Thread.currentThread().getName() + "到达终点");
-                        cdAnswer.countDown();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            Runnable runnable = () -> {
+                try {
+                    System.out.println("选手" + Thread.currentThread().getName() + "正在等待裁判发布口令");
+                    cdOrder.await();
+                    System.out.println("选手" + Thread.currentThread().getName() + "已接受裁判口令");
+                    Thread.sleep((long) (Math.random() * 10000));
+                    System.out.println("选手" + Thread.currentThread().getName() + "到达终点");
+                    cdAnswer.countDown();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             };
             service.execute(runnable);
