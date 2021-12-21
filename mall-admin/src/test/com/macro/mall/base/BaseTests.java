@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @description: base tests
+ * @description base tests
  * @date 2021/11/8 10:17
  */
 @Slf4j

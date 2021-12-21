@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 
+import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @description: redis test
+ * @description redis test
  * @date 2021/11/8 10:14
  */
 @Slf4j
@@ -25,7 +26,7 @@ public class RedisTemplateTests extends BaseTests {
     @Test
     public void test() {
         //multiplyThreadTest();
-        Boolean promotionApprovedLock = redisTemplate.opsForValue().setIfAbsent("promotionApprovedLock", null, 60, TimeUnit.SECONDS);
+        Boolean promotionApprovedLock = redisTemplate.opsForValue().setIfAbsent("magicKey", "magicVal", 60, TimeUnit.SECONDS);
         System.out.println(promotionApprovedLock);
 //        Thread thread1 = new Thread(new Runnable() {
 //            @Override
@@ -68,7 +69,8 @@ public class RedisTemplateTests extends BaseTests {
             //barrier.await();
             executorService.execute(() -> {
                 try {
-                    if (!redisTemplate.opsForValue().setIfAbsent("promotionApprovedLock", "pId = 99", 10, TimeUnit.SECONDS)) {
+                    Boolean lock = Optional.ofNullable(redisTemplate.opsForValue().setIfAbsent("promotionApprovedLock", "pId = 99", 10, TimeUnit.SECONDS)).orElse(false);
+                    if (!lock) {
                         log.info(Thread.currentThread().getName() + "service updateSelective get lock error.. pid = {}", "99");
                     } else {
                         log.info(Thread.currentThread().getName() + "service updateSelective get lock.. pid = {}", "99");

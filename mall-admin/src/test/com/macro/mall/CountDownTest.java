@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @description: count down launch
+ * @description count down launch
  * @date 2021/11/12 15:19
  */
 public class CountDownTest {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import static com.macro.mall.common.constant.Constants.HOST;
 
 /**
- * @description: base controller
+ * @description base controller
  * @date 2021/11/5 17:41
  */
 @Slf4j

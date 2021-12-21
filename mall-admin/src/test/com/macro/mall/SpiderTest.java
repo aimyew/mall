@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @description: TianYa
+ * @description TianYa
  * @date 2021/10/22 17:33
  */
 public class SpiderTest {
@@ -80,7 +80,7 @@ public class SpiderTest {
             Attributes attributes = floorNode.attributes();
 
             if (floorNode.attributes().hasKey("class") && floorNode.attributes().get("class").equals("item item-ht item-lz")) {
-                System.out.println(String.format("check lz floorSeq: %s author: %s ...", floorNode.attributes().get("data-id"), floorNode.attributes().get("data-user")));
+                System.out.printf("check lz floorSeq: %s author: %s ...%n", floorNode.attributes().get("data-id"), floorNode.attributes().get("data-user"));
                 //continue;
             }
             if (floorNode.attributes().hasKey("class") && floorNode.attributes().get("class").equals("item item-ht ")) {
@@ -93,7 +93,7 @@ public class SpiderTest {
                         }
                     }
                 }
-                System.out.println(String.format("check normal(contaion lz %s) floorSeq: %s author: %s ...", hasLz, floorNode.attributes().get("data-id"), floorNode.attributes().get("data-user")));
+                System.out.printf("check normal(contaion lz %s) floorSeq: %s author: %s ...%n", hasLz, floorNode.attributes().get("data-id"), floorNode.attributes().get("data-user"));
                 if (!hasLz) {
                     flag = true;
                     set.add(Integer.parseInt(floorNode.attributes().get("data-id")));
