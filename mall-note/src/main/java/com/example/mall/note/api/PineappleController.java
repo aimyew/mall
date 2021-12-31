@@ -4,6 +4,7 @@ import com.example.mall.note.ffactory.FruitFactory;
 import com.example.mall.note.ffactory.PineappleFactory;
 import com.example.mall.note.domain.Pineapple;
 import com.example.mall.note.service.PineappleService;
+import com.example.mall.note.utils.EnvParameterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,13 +27,13 @@ public class PineappleController {
      */
 
     /**
-     * @Autowired 默认 按 byType 自动注入
+     * @ Autowired 默认 按 byType 自动注入
      */
     @Autowired
     private PineappleService pineappleService;
 
     /**
-     * @Resource 默认 按 byName自动注入
+     * @ Resource 默认 按 byName自动注入
      * 其装配顺序为
      * 1.如果同时指定了 name 和 type 则从 Spring 上下文中找到唯一匹配的 bean 进行装配 若找不到则抛出异常
      * 2.如果指定了 name 则从上下文中查找名称（id）匹配的 bean 进行装配 若找不到则抛出异常
@@ -42,6 +43,8 @@ public class PineappleController {
     @Resource(name = "pineappleFactory1")
     private PineappleFactory pineappleFactory1;
 
+    @Autowired
+    private EnvParameterUtil envParameterUtil;
 
     @Autowired
     @Qualifier("pineappleFactory1")
@@ -61,6 +64,7 @@ public class PineappleController {
 
         System.out.println(pineapple1.equals(pineapple2));
 
+        System.out.println(envParameterUtil.getServerPort());
         return "pineapple";
     }
 }
