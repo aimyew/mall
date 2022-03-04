@@ -21,4 +21,6 @@ public interface MemberReadHistoryRepository extends MongoRepository<MemberReadH
      * 根据会员ID删除记录
      */
     void deleteAllByMemberId(Long memberId);
+
+    MemberReadHistory findByMemberNickname(String pony);
 }

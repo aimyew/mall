@@ -1,6 +1,6 @@
 package com.example.mall.note.api;
 
-import com.example.mall.note.config.ZkApi;
+import com.example.mall.note.zk.ZkApi;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

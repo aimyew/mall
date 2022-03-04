@@ -1,7 +1,6 @@
-package com.example.mall.note.config;
+package com.example.mall.note.zk;
 
 import org.apache.zookeeper.WatchedEvent;
-import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +18,7 @@ import java.util.concurrent.CountDownLatch;
  */
 @Configuration
 public class ZkConfig {
-    @Value("${zookeeper.address:10.53.2.66:2181}")
+    @Value("${zookeeper.address:localhost:2181}")
     private String connectString;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

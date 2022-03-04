@@ -1,4 +1,4 @@
-package com.example.mall.note.config;
+package com.example.mall.note.zk;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.WatchedEvent;
